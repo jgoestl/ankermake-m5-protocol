@@ -7,7 +7,7 @@ from libflagship.util import enhex
 from libflagship.mqtt import MqttMsgType
 
 import cli.mqtt
-import mqttrelay.mqtt as mqttrelay
+import mqttrelay.mqtt
 
 
 class MqttQueue(Service):
@@ -18,7 +18,7 @@ class MqttQueue(Service):
             app.config["printer_index"],
             app.config["insecure"]
         )
-        self.relay_client = mqttrelay.mqtt_open()
+        self.relay_client = mqttrelay.mqtt.mqtt_open()
 
     def worker_run(self, timeout):
         for msg, body in self.client.fetch(timeout=timeout):
